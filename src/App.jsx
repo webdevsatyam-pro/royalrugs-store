@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar"; // Navbar import kiya
 import Home from "./pages/Home"; // Home import kiya
+import Collections from "./pages/Collections";
 
 function App() {
   return (
@@ -10,10 +11,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/signin" element={<SignIn />} /> */}
-          {/* Baaki pages ke routes yahan aayenge */}
+          <Route path="/collections" element={<Collections />} />
         </Routes>
       </main>
-      {/* Aap yahan Footer bhi add kar sakte hain baad mein */}
     </div>
   );
 }
