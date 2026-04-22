@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar"; // Navbar import kiya
 import Home from "./pages/Home"; // Home import kiya
 import Collections from "./pages/Collections";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/collections" element={<Collections />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
