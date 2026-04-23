@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, ShoppingBag, Heart, CheckCircle } from "lucide-react";
+import { Filter, ShoppingBag, Heart, Search, ChevronRight } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 const productsData = [
@@ -75,7 +75,6 @@ const Collections = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  // Combined Filter Logic (Search + Category)
   const filteredProducts = productsData
     .filter(
       (p) => selectedCategory === "All" || p.category === selectedCategory,
@@ -88,43 +87,58 @@ const Collections = () => {
     });
 
   return (
-    <div className="bg-[#fcfbf7] min-h-screen pt-32 pb-20">
+    // PT-20 Navbar ke turant niche se shuru karne ke liye
+    <div className="bg-[#fcfbf7] min-h-screen pt-20 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Header */}
-        <div className="mb-12 border-b border-stone-200 pb-8 flex flex-col md:flex-row justify-between items-end gap-6">
-          <div>
-            <h1 className="text-5xl font-serif font-bold text-stone-900 mb-2">
-              Our Collections
-            </h1>
-            <p className="text-amber-800 font-medium tracking-widest uppercase text-sm">
-              {searchQuery
-                ? `Searching for: ${searchQuery}`
-                : `Handcrafted Elegance / ${selectedCategory} Rugs`}
-            </p>
-          </div>
-          <div className="flex items-center gap-4 bg-white p-2 rounded-lg shadow-sm border border-stone-100">
-            <span className="text-xs font-bold text-gray-400 pl-2">
-              SORT BY
-            </span>
-            <select
-              onChange={(e) => setSortOption(e.target.value)}
-              className="outline-none text-sm font-bold text-stone-800 bg-transparent cursor-pointer pr-4">
-              <option value="default">Featured</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-            </select>
+        {/* Breadcrumbs - Margin kam kiya (mt-4) */}
+        <nav className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-stone-400 mt-4 mb-4">
+          <Link to="/" className="hover:text-amber-800 transition-colors">
+            Home
+          </Link>
+          <ChevronRight size={10} />
+          <span className="text-amber-800">Collections</span>
+        </nav>
+
+        {/* Header Section - Padding aur Margin tight kiya */}
+        <div className="mb-8 border-b border-stone-200 pb-6">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-4">
+            <div className="space-y-1">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-stone-900 tracking-tight">
+                Our Collections
+              </h1>
+              <p className="text-amber-800 font-bold tracking-[0.15em] uppercase text-[10px] flex items-center gap-2">
+                <span className="w-6 h-[1px] bg-amber-800"></span>
+                {searchQuery
+                  ? `Results for: ${searchQuery}`
+                  : `${selectedCategory} Series Masterpieces`}
+              </p>
+            </div>
+
+            {/* Sort Box */}
+            <div className="flex items-center gap-3 bg-white px-3 py-2 rounded-sm border border-stone-100 shadow-sm">
+              <span className="text-[9px] font-black text-stone-400 uppercase">
+                Sort By
+              </span>
+              <select
+                onChange={(e) => setSortOption(e.target.value)}
+                className="outline-none text-xs font-bold text-stone-800 bg-transparent cursor-pointer">
+                <option value="default">Featured</option>
+                <option value="price-low">Price: Low-High</option>
+                <option value="price-high">Price: High-Low</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12">
-          {/* Sidebar Filters */}
-          <aside className="w-full lg:w-64">
-            <div className="sticky top-32 space-y-10">
+        <div className="flex flex-col lg:flex-row gap-10">
+          {/* Sidebar */}
+          <aside className="w-full lg:w-60">
+            <div className="sticky top-24 space-y-8">
               <div>
-                <h3 className="text-xs font-black tracking-[0.2em] text-gray-400 uppercase mb-6 flex items-center gap-2">
-                  <Filter size={14} /> Shop by Category
+                <h3 className="text-[10px] font-black tracking-widest text-stone-400 uppercase mb-4 flex items-center gap-2">
+                  <Filter size={12} /> Categories
                 </h3>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {[
                     "All",
                     "Persian",
@@ -138,10 +152,10 @@ const Collections = () => {
                         setSelectedCategory(cat);
                         setSearchQuery("");
                       }}
-                      className={`w-full text-left py-3 px-4 rounded-lg text-sm font-bold transition-all ${
+                      className={`w-full text-left py-2.5 px-4 rounded-md text-xs font-bold transition-all ${
                         selectedCategory === cat
-                          ? "bg-amber-900 text-white shadow-lg translate-x-2"
-                          : "bg-white text-stone-600 hover:bg-stone-100"
+                          ? "bg-amber-900 text-white shadow-md"
+                          : "bg-white text-stone-600 hover:bg-stone-50 border border-stone-100"
                       }`}>
                       {cat} Rugs
                     </button>
@@ -149,15 +163,16 @@ const Collections = () => {
                 </div>
               </div>
 
-              <div className="bg-amber-50 p-6 rounded-2xl border border-amber-100">
-                <h4 className="font-serif font-bold text-amber-900 mb-2">
-                  Need Custom Size?
+              {/* Custom Card - Compact version */}
+              <div className="bg-amber-50 p-5 rounded-xl border border-amber-100/50">
+                <h4 className="font-serif font-bold text-amber-900 text-sm mb-1">
+                  Custom Size?
                 </h4>
-                <p className="text-xs text-amber-800/70 mb-4 leading-relaxed">
-                  We can weave any design in your required dimensions.
+                <p className="text-[10px] text-amber-800/70 mb-3">
+                  We weave your imagination.
                 </p>
-                <button className="w-full bg-white text-amber-900 py-2 rounded-full text-xs font-black shadow-sm hover:shadow-md transition-all">
-                  CONSULT ARTISAN
+                <button className="w-full bg-white text-amber-900 py-2 rounded-lg text-[9px] font-black shadow-sm uppercase tracking-tighter">
+                  Consult Artisan
                 </button>
               </div>
             </div>
@@ -165,66 +180,63 @@ const Collections = () => {
 
           {/* Product Grid */}
           <main className="flex-1">
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
               <AnimatePresence mode="popLayout">
                 {filteredProducts.map((product) => (
                   <motion.div
                     key={product.id}
                     layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     className="group">
-                    <div className="relative aspect-[4/5] overflow-hidden bg-stone-200 rounded-sm">
+                    <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 rounded-sm">
                       {product.tag && (
-                        <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm text-stone-900 text-[10px] font-black px-3 py-1 uppercase tracking-tighter shadow-sm">
+                        <div className="absolute top-3 left-3 z-10 bg-white/90 px-2 py-0.5 text-[9px] font-black uppercase tracking-tighter shadow-sm">
                           {product.tag}
                         </div>
                       )}
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
 
-                      {/* Hover Overlay Buttons */}
-                      <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-3">
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                      {/* Hover Buttons */}
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center gap-2">
+                        <button
                           onClick={() => addToCart(product)}
-                          className="bg-white text-stone-900 px-6 py-3 rounded-full font-black text-xs shadow-2xl flex items-center gap-2 hover:bg-amber-900 hover:text-white transition-colors">
-                          <ShoppingBag size={16} /> ADD TO CART
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
+                          className="bg-white text-stone-900 px-5 py-2.5 rounded-full font-bold text-[10px] shadow-xl hover:bg-amber-900 hover:text-white transition-colors flex items-center gap-2">
+                          <ShoppingBag size={14} /> ADD TO CART
+                        </button>
+                        <button
                           onClick={() => addToWishlist(product)}
-                          className={`p-3 rounded-full shadow-2xl transition-all ${wishlist.find((i) => i.id === product.id) ? "bg-red-500 text-white" : "bg-white text-stone-900 hover:text-red-500"}`}>
+                          className={`p-2.5 rounded-full shadow-xl transition-all ${wishlist.find((i) => i.id === product.id) ? "bg-red-500 text-white" : "bg-white hover:text-red-500"}`}>
                           <Heart
-                            size={20}
+                            size={16}
                             fill={
                               wishlist.find((i) => i.id === product.id)
                                 ? "currentColor"
                                 : "none"
                             }
                           />
-                        </motion.button>
+                        </button>
                       </div>
                     </div>
 
-                    <div className="mt-6 text-center">
-                      <h3 className="font-serif text-xl font-bold text-stone-900 mb-1 group-hover:text-amber-800 transition-colors cursor-pointer">
+                    <div className="mt-4 text-center">
+                      <h3 className="font-serif text-lg font-bold text-stone-900 group-hover:text-amber-800 transition-colors">
                         {product.name}
                       </h3>
-                      <p className="text-stone-400 text-xs font-bold uppercase tracking-[0.2em] mb-3">
+                      <p className="text-stone-400 text-[9px] font-black uppercase tracking-widest mb-1">
                         {product.category}
                       </p>
-                      <div className="flex items-center justify-center gap-3">
-                        <span className="text-lg font-medium text-amber-950">
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-base font-bold text-amber-950">
                           ${product.price}
                         </span>
-                        <span className="text-sm text-stone-300 line-through">
-                          ${product.price + 250}
+                        <span className="text-[11px] text-stone-300 line-through">
+                          ${product.price + 200}
                         </span>
                       </div>
                     </div>
@@ -232,27 +244,6 @@ const Collections = () => {
                 ))}
               </AnimatePresence>
             </div>
-
-            {/* No Results State */}
-            {filteredProducts.length === 0 && (
-              <div className="py-20 text-center border-2 border-dashed border-stone-200 rounded-3xl">
-                <Search size={60} className="mx-auto text-stone-200 mb-4" />
-                <h2 className="text-2xl font-serif font-bold text-stone-800">
-                  No treasures found
-                </h2>
-                <p className="text-stone-500 mt-2">
-                  Try a different search or explore all categories.
-                </p>
-                <button
-                  onClick={() => {
-                    setSelectedCategory("All");
-                    setSearchQuery("");
-                  }}
-                  className="mt-8 bg-stone-900 text-white px-8 py-3 rounded-full text-sm font-bold">
-                  Clear All Filters
-                </button>
-              </div>
-            )}
           </main>
         </div>
       </div>
