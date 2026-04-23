@@ -87,11 +87,11 @@ const Collections = () => {
     });
 
   return (
-    // PT-20 Navbar ke turant niche se shuru karne ke liye
-    <div className="bg-[#fcfbf7] min-h-screen pt-20 pb-16">
+    // PT-20 ko kam karke PT-4 kiya taki Navbar ke sath gap na rahe
+    <div className="bg-[#fcfbf7] min-h-screen pt-4 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumbs - Margin kam kiya (mt-4) */}
-        <nav className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-stone-400 mt-4 mb-4">
+        {/* Breadcrumbs - mt-4 ko 0 kiya gap kam karne ke liye */}
+        <nav className="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-stone-400 mt-2 mb-4">
           <Link to="/" className="hover:text-amber-800 transition-colors">
             Home
           </Link>
@@ -99,7 +99,7 @@ const Collections = () => {
           <span className="text-amber-800">Collections</span>
         </nav>
 
-        {/* Header Section - Padding aur Margin tight kiya */}
+        {/* Header Section */}
         <div className="mb-8 border-b border-stone-200 pb-6">
           <div className="flex flex-col md:flex-row justify-between items-end gap-4">
             <div className="space-y-1">
@@ -114,7 +114,6 @@ const Collections = () => {
               </p>
             </div>
 
-            {/* Sort Box */}
             <div className="flex items-center gap-3 bg-white px-3 py-2 rounded-sm border border-stone-100 shadow-sm">
               <span className="text-[9px] font-black text-stone-400 uppercase">
                 Sort By
@@ -131,9 +130,9 @@ const Collections = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10">
-          {/* Sidebar */}
           <aside className="w-full lg:w-60">
-            <div className="sticky top-24 space-y-8">
+            {/* Sticky top adjust kiya kyuki navbar ab page ka part hai */}
+            <div className="sticky top-4 space-y-8">
               <div>
                 <h3 className="text-[10px] font-black tracking-widest text-stone-400 uppercase mb-4 flex items-center gap-2">
                   <Filter size={12} /> Categories
@@ -163,7 +162,6 @@ const Collections = () => {
                 </div>
               </div>
 
-              {/* Custom Card - Compact version */}
               <div className="bg-amber-50 p-5 rounded-xl border border-amber-100/50">
                 <h4 className="font-serif font-bold text-amber-900 text-sm mb-1">
                   Custom Size?
@@ -178,7 +176,6 @@ const Collections = () => {
             </div>
           </aside>
 
-          {/* Product Grid */}
           <main className="flex-1">
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
               <AnimatePresence mode="popLayout">
@@ -202,7 +199,6 @@ const Collections = () => {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
 
-                      {/* Hover Buttons */}
                       <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center gap-2">
                         <button
                           onClick={() => addToCart(product)}

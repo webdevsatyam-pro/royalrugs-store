@@ -7,7 +7,7 @@ import CustomRugs from "./pages/CustomRugs";
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -17,7 +17,7 @@ function App() {
       </Routes>
 
       <Footer />
-    </div>
+    </>
   );
 }
 
