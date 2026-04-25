@@ -4,6 +4,7 @@ import Home from "./pages/Home"; // Home import kiya
 import Collections from "./pages/Collections";
 import Footer from "./components/Footer";
 import CustomRugs from "./pages/CustomRugs";
+import NewArrivals from "./pages/NewArrivals";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         {/* <Route path="/signin" element={<SignIn />} /> */}
         <Route path="/collections" element={<Collections />} />
         <Route path="/custom-rugs" element={<CustomRugs />} />
+        <Route path="/new-arrivals" element={<NewArrivals />} />
       </Routes>
 
       <Footer />
