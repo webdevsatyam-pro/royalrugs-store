@@ -7,6 +7,7 @@ import CustomRugs from "./pages/CustomRugs";
 import NewArrivals from "./pages/NewArrivals";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/new-arrivals" element={<NewArrivals />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
 
       <Footer />
