@@ -153,13 +153,15 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-amber-700 hover:bg-white hover:text-stone-900 text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] transition-all shadow-xl flex items-center justify-center gap-3 group">
+                <Link
+                  to="/checkout"
+                  className="w-full bg-amber-700 hover:bg-white hover:text-stone-900 text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] transition-all shadow-xl flex items-center justify-center gap-3 group text-center">
                   Proceed to Payment{" "}
                   <ArrowRight
                     size={16}
                     className="group-hover:translate-x-1 transition-transform"
                   />
-                </button>
+                </Link>
 
                 <div className="mt-8 flex items-center gap-3 text-stone-500 text-[10px] uppercase font-bold tracking-widest justify-center">
                   <ShieldCheck size={16} className="text-amber-700" /> Insured
