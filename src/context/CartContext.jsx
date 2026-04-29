@@ -10,18 +10,15 @@ export const CartProvider = ({ children }) => {
   // --- 1. ADD TO CART (With Quantity Logic) ---
   const addToCart = (product) => {
     setCart((prev) => {
-      // Check karo ki kya product pehle se cart mein hai?
       const isExist = prev.find((item) => item.id === product.id);
 
       if (isExist) {
-        // Agar hai, toh sirf uski quantity badha do
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item,
         );
       }
-      // Agar naya hai, toh quantity 1 set karke add karo
       return [...prev, { ...product, quantity: 1 }];
     });
     alert(`${product.name} has been added to your Bag!`);
@@ -49,16 +46,19 @@ export const CartProvider = ({ children }) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // --- 4. WISHLIST TOGGLE (Add or Remove) ---
+  // --- 4. CLEAR CART (Order hone ke baad khali karne ke liye) ---
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  // --- 5. WISHLIST TOGGLE (Add or Remove) ---
   const addToWishlist = (product) => {
     setWishlist((prev) => {
       const isExist = prev.find((item) => item.id === product.id);
       if (isExist) {
-        // Agar pehle se hai toh remove kar do (Toggle feature)
         alert("Removed from Wishlist");
         return prev.filter((item) => item.id !== product.id);
       } else {
-        // Agar nahi hai toh add kar do
         alert("Added to Wishlist");
         return [...prev, product];
       }
@@ -74,6 +74,7 @@ export const CartProvider = ({ children }) => {
         addToWishlist,
         removeFromCart,
         updateQuantity,
+        clearCart, // <--- Isey add kiya gaya hai
       }}>
       {children}
     </CartContext.Provider>
