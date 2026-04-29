@@ -4,7 +4,6 @@ import {
   ShieldCheck,
   Truck,
   CreditCard,
-  ChevronRight,
   CheckCircle2,
   ArrowLeft,
   Lock,
@@ -13,12 +12,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Checkout = () => {
-  const { cart } = useCart();
+  // 1. clearCart ko context se nikaal liya
+  const { cart, clearCart } = useCart();
   const navigate = useNavigate();
   const [isOrdered, setIsOrdered] = useState(false);
-
-  // FIXED: Payment selection state
-  const [paymentMethod, setPaymentMethod] = useState("card"); // 'card' or 'cod'
+  const [paymentMethod, setPaymentMethod] = useState("card");
 
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -27,9 +25,16 @@ const Checkout = () => {
   const shipping = subtotal > 0 ? 50 : 0;
   const total = subtotal + shipping;
 
+  // 2. Order hone par cart khali karne ka logic
   const handlePlaceOrder = (e) => {
     e.preventDefault();
+
+    // Yahan cart khali ho jayega
+    clearCart();
+
+    // Fir success screen dikhegi
     setIsOrdered(true);
+    window.scrollTo(0, 0);
   };
 
   if (isOrdered) {
@@ -129,7 +134,7 @@ const Checkout = () => {
               </div>
             </section>
 
-            {/* 2. Payment Method (FIXED SECTION) */}
+            {/* 2. Payment Method */}
             <section>
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-8 h-8 bg-stone-900 text-white rounded-full flex items-center justify-center text-xs font-bold">
@@ -138,7 +143,6 @@ const Checkout = () => {
                 <h3 className="text-xl font-serif font-bold">Payment Method</h3>
               </div>
               <div className="space-y-4">
-                {/* Credit Card Option */}
                 <div
                   onClick={() => setPaymentMethod("card")}
                   className={`cursor-pointer border-2 p-6 rounded-2xl flex items-center justify-between transition-all ${
@@ -164,7 +168,6 @@ const Checkout = () => {
                     className={`w-5 h-5 border-4 rounded-full transition-all ${paymentMethod === "card" ? "border-amber-800 bg-white" : "border-stone-200 bg-transparent"}`}></div>
                 </div>
 
-                {/* Cash on Delivery Option (NOW SELECTABLE) */}
                 <div
                   onClick={() => setPaymentMethod("cod")}
                   className={`cursor-pointer border-2 p-6 rounded-2xl flex items-center justify-between transition-all ${
@@ -191,7 +194,6 @@ const Checkout = () => {
                 </div>
               </div>
 
-              {/* Card Inputs (Show only if Card is selected) */}
               <AnimatePresence>
                 {paymentMethod === "card" && (
                   <motion.div
@@ -222,13 +224,11 @@ const Checkout = () => {
             </section>
           </div>
 
-          {/* RIGHT: Order Summary */}
           <div className="lg:w-[420px]">
             <div className="bg-white rounded-[2.5rem] p-10 shadow-sm border border-stone-100 sticky top-24">
               <h3 className="text-xl font-serif font-bold mb-8">
                 Order Summary
               </h3>
-
               <div className="space-y-6 mb-10 max-h-[300px] overflow-y-auto no-scrollbar">
                 {cart.map((item) => (
                   <div key={item.id} className="flex items-center gap-4">
@@ -253,7 +253,6 @@ const Checkout = () => {
                   </div>
                 ))}
               </div>
-
               <div className="space-y-4 border-t border-stone-100 pt-8">
                 <div className="flex justify-between text-sm text-stone-500 font-medium">
                   <span>Subtotal</span>
@@ -272,7 +271,6 @@ const Checkout = () => {
                   </span>
                 </div>
               </div>
-
               <button
                 type="submit"
                 className="w-full bg-[#12110f] text-white mt-10 py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] shadow-2xl hover:bg-amber-900 transition-all flex items-center justify-center gap-3">
