@@ -74,7 +74,7 @@ export const CartProvider = ({ children }) => {
         addToWishlist,
         removeFromCart,
         updateQuantity,
-        clearCart, // <--- Isey add kiya gaya hai
+        clearCart,
       }}>
       {children}
     </CartContext.Provider>

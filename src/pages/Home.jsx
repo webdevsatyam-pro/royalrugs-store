@@ -1,13 +1,24 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Star, ShieldCheck, Truck, RotateCcw } from "lucide-react";
+import {
+  ArrowRight,
+  Star,
+  ShieldCheck,
+  Truck,
+  RotateCcw,
+  Quote,
+  Eye,
+  ShoppingBag,
+  Heart,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   // Animation Variants
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
     transition: { duration: 0.6 },
   };
 
@@ -32,6 +43,38 @@ const Home = () => {
     },
   ];
 
+  // New Data for Added Sections
+  const newArrivals = [
+    {
+      id: 1,
+      name: "Vintage Silk Route",
+      price: "$450",
+      tag: "New",
+      img: "https://images.unsplash.com/photo-1594051664213-9426f9790400?auto=format&fit=crop&q=80",
+    },
+    {
+      id: 2,
+      name: "Azure Geometric",
+      price: "$280",
+      tag: "Sale",
+      img: "https://images.unsplash.com/photo-1562544208-5190d6a29ad9?auto=format&fit=crop&q=80",
+    },
+    {
+      id: 3,
+      name: "Tribal Hand-Woven",
+      price: "$320",
+      tag: "Hot",
+      img: "https://images.unsplash.com/photo-1575203091586-611fe505bb0e?auto=format&fit=crop&q=80",
+    },
+    {
+      id: 4,
+      name: "Minimalist Sand",
+      price: "$210",
+      tag: "New",
+      img: "https://images.unsplash.com/photo-1592345224825-450f383e5893?auto=format&fit=crop&q=80",
+    },
+  ];
+
   return (
     <div className="bg-[#fdfcfb]">
       {/* 1. HERO SECTION */}
@@ -42,8 +85,7 @@ const Home = () => {
             alt="Luxury Rug Background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/40"></div>{" "}
-          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -165,6 +207,51 @@ const Home = () => {
         </div>
       </section>
 
+      {/* NEW SECTION: NEW ARRIVALS */}
+      <section className="py-20 bg-stone-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">
+              New Arrivals
+            </h2>
+            <p className="text-gray-500 mt-4">
+              Discover our latest hand-crafted additions
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {newArrivals.map((item) => (
+              <motion.div
+                key={item.id}
+                {...fadeInUp}
+                className="group relative">
+                <div className="aspect-[3/4] overflow-hidden bg-gray-200 relative">
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-4 left-4 bg-amber-700 text-white px-3 py-1 text-xs font-bold">
+                    {item.tag}
+                  </span>
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                    <button className="bg-white p-3 rounded-full hover:bg-amber-600 hover:text-white transition-colors shadow-lg">
+                      <ShoppingBag size={18} />
+                    </button>
+                    <button className="bg-white p-3 rounded-full hover:bg-amber-600 hover:text-white transition-colors shadow-lg">
+                      <Heart size={18} />
+                    </button>
+                  </div>
+                </div>
+                <div className="mt-4 text-center">
+                  <h3 className="font-medium text-gray-900">{item.name}</h3>
+                  <p className="text-amber-800 font-bold">{item.price}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 4. ABOUT BRAND / CTA */}
       <section className="bg-amber-900 py-20 text-white overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
@@ -197,13 +284,96 @@ const Home = () => {
                 Sustainable and Eco-friendly production
               </li>
               <li className="flex items-center gap-3">
-                <div className="h-2 w-2 bg-amber-400 rounded-full"></div>
-                Trusted by 50,000+ homes worldwide
+                <div className="h-2 w-2 bg-amber-400 rounded-full"></div>Trusted
+                by 50,000+ homes worldwide
               </li>
             </ul>
             <button className="bg-amber-100 text-amber-900 px-10 py-4 font-bold rounded-sm hover:bg-white transition-colors">
               Our Story
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION: CUSTOMER TESTIMONIALS */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">
+              Voices of Luxury
+            </h2>
+            <div className="h-1 w-20 bg-amber-700 mx-auto mt-4"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              {
+                name: "Sarah Johnson",
+                role: "Interior Designer",
+                text: "The quality of the Persian rug I received is beyond words. It has completely transformed my living room.",
+              },
+              {
+                name: "Michael Chen",
+                role: "Home Owner",
+                text: "Exceptional service and even better products. The hand-knotted detail is something you can only find at RoyalRugs.",
+              },
+              {
+                name: "Emma Davis",
+                role: "Architect",
+                text: "Sustainable materials and authentic designs. This is my go-to place for all my high-end interior projects.",
+              },
+            ].map((testi, i) => (
+              <motion.div
+                key={i}
+                {...fadeInUp}
+                className="bg-stone-50 p-8 relative">
+                <Quote
+                  className="text-amber-200 absolute top-4 right-4"
+                  size={40}
+                />
+                <div className="flex mb-4 text-amber-500">
+                  <Star size={16} fill="currentColor" />{" "}
+                  <Star size={16} fill="currentColor" />{" "}
+                  <Star size={16} fill="currentColor" />{" "}
+                  <Star size={16} fill="currentColor" />{" "}
+                  <Star size={16} fill="currentColor" />
+                </div>
+                <p className="text-gray-700 italic mb-6">"{testi.text}"</p>
+                <div>
+                  <h4 className="font-bold text-gray-900">{testi.name}</h4>
+                  <p className="text-sm text-amber-700">{testi.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION: INSTAGRAM LOOKBOOK */}
+      <section className="py-12 border-t border-gray-100">
+        <div className="max-w-full px-4 overflow-hidden">
+          <div className="flex justify-between items-center mb-8 px-4 sm:px-12">
+            <h3 className="text-xl font-serif font-bold italic">
+              #RoyalRugsInHomes
+            </h3>
+            <p className="text-gray-500 text-sm">
+              Follow us @RoyalRugs_Official
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div
+                key={i}
+                className="aspect-square relative group cursor-pointer overflow-hidden">
+                <img
+                  src={`https://images.unsplash.com/photo-${1500000000000 + i * 1000000}?auto=format&fit=crop&q=60&w=400`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  alt="Instagram"
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <Eye className="text-white" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -229,6 +399,44 @@ const Home = () => {
           </form>
         </div>
       </section>
+
+      {/* FINAL MINI FOOTER (To make it look complete) */}
+      <footer className="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="col-span-1 md:col-span-1">
+            <h3 className="text-white font-serif text-2xl mb-4">RoyalRugs</h3>
+            <p className="text-sm">
+              Curating the world's finest hand-knotted masterpieces since 1984.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-white font-bold mb-4">Shop</h4>
+            <ul className="text-sm space-y-2">
+              <li>Modern Rugs</li>
+              <li>Traditional Rugs</li>
+              <li>Office Collection</li>
+              <li>Custom Orders</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold mb-4">Support</h4>
+            <ul className="text-sm space-y-2">
+              <li>Shipping Policy</li>
+              <li>Track Order</li>
+              <li>Returns & Exchanges</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-bold mb-4">Visit Us</h4>
+            <p className="text-sm">
+              123 Luxury Lane, Manhattan
+              <br />
+              New York, NY 10001
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
