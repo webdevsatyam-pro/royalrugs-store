@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  ShieldCheck,
+  Truck,
+  RotateCcw,
+  CreditCard,
+} from "lucide-react";
 
-// Custom Social Icons (SVGs) - No more Lucide Error!
+// Custom Social Icons
 const InstagramIcon = () => (
   <svg
     width="20"
@@ -49,118 +58,215 @@ const TwitterIcon = () => (
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0c0b09] text-gray-300 pt-16 pb-8 border-t border-amber-900/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* 1. Brand Section */}
-          <div className="space-y-6">
+    <footer className="bg-[#0c0b09] text-gray-300 border-t border-amber-900/30">
+      {/* 1. TOP TRUST BADGES BAR */}
+      <div className="border-b border-white/5 bg-white/[0.02]">
+        <div className="max-w-7xl mx-auto px-4 py-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="flex items-center gap-4">
+              <Truck className="text-amber-600" size={32} />
+              <div>
+                <h5 className="text-white text-sm font-bold uppercase">
+                  Free Shipping
+                </h5>
+                <p className="text-xs text-gray-500 font-light">
+                  On orders over $500
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <ShieldCheck className="text-amber-600" size={32} />
+              <div>
+                <h5 className="text-white text-sm font-bold uppercase">
+                  Secure Payment
+                </h5>
+                <p className="text-xs text-gray-500 font-light">
+                  100% Protected
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <RotateCcw className="text-amber-600" size={32} />
+              <div>
+                <h5 className="text-white text-sm font-bold uppercase">
+                  Easy Returns
+                </h5>
+                <p className="text-xs text-gray-500 font-light">
+                  30 Day Policy
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <CreditCard className="text-amber-600" size={32} />
+              <div>
+                <h5 className="text-white text-sm font-bold uppercase">
+                  EMI Available
+                </h5>
+                <p className="text-xs text-gray-500 font-light">
+                  At 0% Interest
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-16">
+          {/* 2. BRAND & ABOUT */}
+          <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
-              <span className="text-2xl font-serif font-bold text-white tracking-tighter">
+              <span className="text-3xl font-serif font-bold text-white tracking-tighter">
                 ROYAL<span className="text-amber-600">RUGS</span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed text-gray-400">
-              Timeless craftsmanship and premium hand-knotted luxury for your
-              home.
+            <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
+              Established in 1984, we bring the legacy of hand-knotted
+              perfection to modern homes. Each rug is a masterpiece of art,
+              culture, and sustainable craftsmanship.
             </p>
-            <div className="flex space-x-5">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-amber-500 transition-colors">
-                <InstagramIcon />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-amber-500 transition-colors">
-                <FacebookIcon />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-amber-500 transition-colors">
-                <TwitterIcon />
-              </a>
+            <div className="flex space-x-5 pt-2">
+              {[<InstagramIcon />, <FacebookIcon />, <TwitterIcon />].map(
+                (icon, idx) => (
+                  <a
+                    key={idx}
+                    href="#"
+                    className="w-10 h-10 rounded-full border border-amber-900/50 flex items-center justify-center text-gray-400 hover:text-amber-500 hover:border-amber-500 transition-all duration-300">
+                    {icon}
+                  </a>
+                ),
+              )}
             </div>
           </div>
 
-          {/* 2. Collection Links */}
+          {/* 3. COLLECTIONS LINKS */}
           <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-widest mb-6 pb-2 border-b border-amber-900/20 inline-block">
-              Collection
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  to="/collections"
-                  className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Classic Persian
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/collections"
-                  className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Modern Designs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/collections"
-                  className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Custom Rugs
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* 3. Contact Details */}
-          <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-widest mb-6 pb-2 border-b border-amber-900/20 inline-block">
-              Support
+            <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8 relative">
+              Collections
+              <span className="absolute -bottom-2 left-0 w-8 h-[1px] bg-amber-600"></span>
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-sm text-gray-400">
-                <MapPin size={16} className="text-amber-600" /> Jaipur,
-                Rajasthan, IN
-              </li>
-              <li className="flex items-center gap-3 text-sm text-gray-400">
-                <Phone size={16} className="text-amber-600" /> +91 98765 43210
-              </li>
-              <li className="flex items-center gap-3 text-sm text-gray-400">
-                <Mail size={16} className="text-amber-600" />{" "}
-                hello@royalrugs.com
-              </li>
+              {[
+                "Classic Persian",
+                "Modern Minimalist",
+                "Vintage Oriental",
+                "Hand-Tufted Wool",
+                "Custom Rugs",
+              ].map((item) => (
+                <li key={item}>
+                  <Link
+                    to="/collections"
+                    className="text-sm text-gray-500 hover:text-amber-500 transition-colors flex items-center gap-2 group">
+                    <span className="w-0 h-[1px] bg-amber-600 group-hover:w-3 transition-all"></span>{" "}
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* 4. Newsletter */}
+          {/* 4. COMPANY & CARE */}
           <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-widest mb-6 pb-2 border-b border-amber-900/20 inline-block">
-              Newsletter
+            <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8 relative">
+              Help & Care
+              <span className="absolute -bottom-2 left-0 w-8 h-[1px] bg-amber-600"></span>
             </h4>
-            <div className="relative mt-2">
+            <ul className="space-y-4">
+              {[
+                "Our Story",
+                "Rug Care Guide",
+                "Shipping Policy",
+                "Track Order",
+                "FAQ",
+              ].map((item) => (
+                <li key={item}>
+                  <Link
+                    to="#"
+                    className="text-sm text-gray-500 hover:text-amber-500 transition-colors flex items-center gap-2 group">
+                    <span className="w-0 h-[1px] bg-amber-600 group-hover:w-3 transition-all"></span>{" "}
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 5. CONTACT & NEWSLETTER */}
+          <div className="lg:col-span-1">
+            <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8 relative">
+              Keep In Touch
+              <span className="absolute -bottom-2 left-0 w-8 h-[1px] bg-amber-600"></span>
+            </h4>
+            <div className="space-y-5 mb-8">
+              <div className="flex items-start gap-3 text-sm text-gray-400">
+                <MapPin size={18} className="text-amber-600 mt-1 shrink-0" />
+                <span>
+                  Jaipur Rugs Mansion, <br />
+                  Rajasthan, India
+                </span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">
+                <Mail size={18} className="text-amber-600 shrink-0" />
+                <span>concierge@royalrugs.com</span>
+              </div>
+            </div>
+
+            <div className="relative group">
               <input
                 type="email"
-                placeholder="Email Address"
-                className="w-full bg-stone-900 border border-stone-800 py-3 px-4 rounded text-sm text-white focus:outline-none focus:border-amber-600"
+                placeholder="Join the Elite Club"
+                className="w-full bg-white/[0.03] border border-white/10 py-3 px-4 rounded-sm text-sm text-white focus:outline-none focus:border-amber-600 transition-all"
               />
-              <button className="absolute right-3 top-3 text-amber-600 hover:text-amber-400 transition-colors">
+              <button className="absolute right-3 top-3 text-amber-600 group-hover:translate-x-1 transition-transform">
                 <Send size={18} />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-stone-900 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[11px] text-gray-500 uppercase tracking-widest font-medium">
-            &copy; {new Date().getFullYear()} RoyalRugs. Handmade with Love.
-          </p>
-          <div className="flex space-x-6 text-[11px] text-gray-500 uppercase tracking-widest">
-            <Link to="#" className="hover:text-white transition-colors">
+        {/* 6. BOTTOM BAR */}
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-center md:text-left">
+            <p className="text-[10px] text-gray-500 uppercase tracking-widest leading-relaxed">
+              &copy; {new Date().getFullYear()} ROYAL RUGS LUXURY COLLECTIONS
+              PVT. LTD. <br />
+              DESIGNED FOR THE EXTRAORDINARY.
+            </p>
+          </div>
+
+          {/* Payment Methods */}
+          <div className="flex items-center gap-4 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+              alt="Visa"
+              className="h-4"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+              alt="Mastercard"
+              className="h-6"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+              alt="Paypal"
+              className="h-4"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg"
+              alt="ApplePay"
+              className="h-5"
+            />
+          </div>
+
+          <div className="flex space-x-8 text-[11px] text-gray-500 uppercase tracking-widest font-bold">
+            <Link to="#" className="hover:text-amber-500 transition-colors">
               Privacy
             </Link>
-            <Link to="#" className="hover:text-white transition-colors">
+            <Link to="#" className="hover:text-amber-500 transition-colors">
               Terms
+            </Link>
+            <Link to="#" className="hover:text-amber-500 transition-colors">
+              Cookies
             </Link>
           </div>
         </div>
