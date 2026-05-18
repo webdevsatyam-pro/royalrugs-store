@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@keyframes subtle-zoom {
+  0%, 100% {
+    transform: scale(1.03);
+  }
+  50% {
+    transform: scale(1.10);
+  }
+}
+
+.animate-\[subtle-zoom_20s_infinite\] {
+  animation: subtle-zoom 20s infinite ease-in-out;
+}

@@ -9,6 +9,7 @@ import {
   Truck,
   RotateCcw,
   CreditCard,
+  Sparkles,
 } from "lucide-react";
 
 // Custom Social Icons
@@ -59,58 +60,6 @@ const TwitterIcon = () => (
 const Footer = () => {
   return (
     <footer className="bg-[#0c0b09] text-gray-300 border-t border-amber-900/30">
-      {/* 1. TOP TRUST BADGES BAR */}
-      <div className="border-b border-white/5 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto px-4 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="flex items-center gap-4">
-              <Truck className="text-amber-600" size={32} />
-              <div>
-                <h5 className="text-white text-sm font-bold uppercase">
-                  Free Shipping
-                </h5>
-                <p className="text-xs text-gray-500 font-light">
-                  On orders over $500
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <ShieldCheck className="text-amber-600" size={32} />
-              <div>
-                <h5 className="text-white text-sm font-bold uppercase">
-                  Secure Payment
-                </h5>
-                <p className="text-xs text-gray-500 font-light">
-                  100% Protected
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <RotateCcw className="text-amber-600" size={32} />
-              <div>
-                <h5 className="text-white text-sm font-bold uppercase">
-                  Easy Returns
-                </h5>
-                <p className="text-xs text-gray-500 font-light">
-                  30 Day Policy
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <CreditCard className="text-amber-600" size={32} />
-              <div>
-                <h5 className="text-white text-sm font-bold uppercase">
-                  EMI Available
-                </h5>
-                <p className="text-xs text-gray-500 font-light">
-                  At 0% Interest
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-16">
           {/* 2. BRAND & ABOUT */}
