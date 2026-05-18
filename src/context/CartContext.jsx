@@ -51,6 +51,35 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
+  const [currency, setCurrency] = useState("USD");
+
+  const currenciesList = {
+    USD: { symbol: "$", rate: 1, label: "USD ($)" },
+    INR: { symbol: "₹", rate: 83, label: "INR (₹)" },
+    EUR: { symbol: "€", rate: 0.92, label: "EUR (€)" },
+    GBP: { symbol: "£", rate: 0.79, label: "GBP (£)" }
+  };
+
+  const convertPrice = (usdAmount) => {
+    const currentCurrency = currenciesList[currency];
+    
+    if (typeof usdAmount === "string") {
+      if (usdAmount.toLowerCase() === "quote") return usdAmount;
+      const numMatch = usdAmount.match(/\d+/);
+      if (!numMatch) return usdAmount;
+      
+      const num = parseInt(numMatch[0], 10);
+      const converted = Math.round(num * currentCurrency.rate);
+      const symbol = currentCurrency.symbol;
+      
+      return usdAmount.replace(/\$?\d+/, `${symbol}${converted}`);
+    }
+    
+    const converted = Math.round(usdAmount * currentCurrency.rate);
+    const symbol = currentCurrency.symbol;
+    return `${symbol}${converted}`;
+  };
+
   // --- 5. WISHLIST TOGGLE (Add or Remove) ---
   const addToWishlist = (product) => {
     setWishlist((prev) => {
@@ -75,6 +104,10 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         clearCart,
+        currency,
+        setCurrency,
+        currenciesList,
+        convertPrice
       }}>
       {children}
     </CartContext.Provider>

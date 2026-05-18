@@ -62,7 +62,7 @@ const productsData = [
 ];
 
 const Collections = () => {
-  const { addToCart, addToWishlist, wishlist } = useCart();
+  const { addToCart, addToWishlist, wishlist, convertPrice } = useCart();
   const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -229,10 +229,10 @@ const Collections = () => {
                       </p>
                       <div className="flex items-center justify-center gap-2">
                         <span className="text-base font-bold text-amber-950">
-                          ${product.price}
+                          {convertPrice(product.price)}
                         </span>
                         <span className="text-[11px] text-stone-300 line-through">
-                          ${product.price + 200}
+                          {convertPrice(product.price + 200)}
                         </span>
                       </div>
                     </div>

@@ -12,6 +12,7 @@ import {
   Sparkles,
   Send,
 } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 // --- Constants ---
 const SIZES = [
@@ -97,6 +98,7 @@ const Hero = ({ onStart }) => (
 );
 
 const CustomRugs = () => {
+  const { convertPrice } = useCart();
   const [size, setSize] = useState(0);
   const [color, setColor] = useState(0);
   const [pattern, setPattern] = useState(0);
@@ -229,7 +231,7 @@ const CustomRugs = () => {
                     Estimated Price
                   </p>
                   <p className="text-4xl font-serif text-amber-500">
-                    {SIZES[size].price}
+                    {convertPrice(SIZES[size].price)}
                   </p>
                 </div>
                 <button className="bg-amber-700 hover:bg-white hover:text-stone-900 text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all">

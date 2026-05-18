@@ -5,7 +5,7 @@ import { ShoppingBag, X, Heart, ArrowRight } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 const Wishlist = () => {
-  const { wishlist, addToWishlist, addToCart } = useCart();
+  const { wishlist, addToWishlist, addToCart, convertPrice } = useCart();
 
   return (
     <div className="bg-[#FAF9F6] min-h-screen pt-4 pb-20">
@@ -91,10 +91,10 @@ const Wishlist = () => {
                     </Link>
                     <div className="mt-auto pt-3 flex items-center justify-center gap-2 border-t border-stone-50">
                       <span className="text-sm font-bold text-stone-900">
-                        ${item.price}
+                        {convertPrice(item.price)}
                       </span>
                       <span className="text-[10px] text-stone-300 line-through font-medium">
-                        ${item.price + 150}
+                        {convertPrice(item.price + 150)}
                       </span>
                     </div>
                   </div>

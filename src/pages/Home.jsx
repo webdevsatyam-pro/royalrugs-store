@@ -15,8 +15,10 @@ import {
   ArrowUpRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Home = () => {
+  const { convertPrice } = useCart();
   // Animation Variants
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -248,7 +250,7 @@ const Home = () => {
                 </span>
 
                 <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
-                  <span className="text-amber-300 font-semibold tracking-wider text-xs mb-1">{cat.price}</span>
+                  <span className="text-amber-300 font-semibold tracking-wider text-xs mb-1">{convertPrice(cat.price)}</span>
                   <h3 className="text-2xl font-serif mb-2">{cat.name}</h3>
                   <p className="text-xs text-gray-300 font-light leading-relaxed mb-5 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
                     {cat.desc}
@@ -316,7 +318,7 @@ const Home = () => {
                   <h3 className="font-semibold text-stone-900 text-sm tracking-wide mb-1 group-hover:text-amber-800 transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-amber-800 font-serif font-semibold text-sm">{item.price}</p>
+                  <p className="text-amber-800 font-serif font-semibold text-sm">{convertPrice(item.price)}</p>
                 </div>
               </motion.div>
             ))}

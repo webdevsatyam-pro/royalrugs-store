@@ -12,7 +12,7 @@ import {
 import { useCart } from "../context/CartContext";
 
 const Cart = () => {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, convertPrice } = useCart();
 
   // Price Calculation: price * quantity
   const subtotal = cart.reduce(
@@ -111,10 +111,10 @@ const Cart = () => {
                     <div className="text-center sm:text-right flex flex-col justify-between items-center sm:items-end min-h-[120px]">
                       <div className="text-right">
                         <p className="text-2xl font-serif font-bold text-stone-900">
-                          ${item.price * item.quantity}
+                          {convertPrice(item.price * item.quantity)}
                         </p>
                         <p className="text-[10px] text-stone-400 font-bold uppercase tracking-tighter">
-                          ${item.price} per unit
+                          {convertPrice(item.price)} per unit
                         </p>
                       </div>
                       <button
@@ -137,18 +137,18 @@ const Cart = () => {
                 <div className="space-y-4 mb-8">
                   <div className="flex justify-between text-stone-400 text-sm font-medium">
                     <span>Subtotal</span>
-                    <span className="text-white">${subtotal}</span>
+                    <span className="text-white">{convertPrice(subtotal)}</span>
                   </div>
                   <div className="flex justify-between text-stone-400 text-sm font-medium">
                     <span>Royal Shipping</span>
-                    <span className="text-white">${shipping}</span>
+                    <span className="text-white">{convertPrice(shipping)}</span>
                   </div>
                   <div className="border-t border-stone-800 pt-6 mt-6 flex justify-between items-end">
                     <span className="text-stone-400 text-xs font-bold uppercase tracking-widest">
                       Total Amount
                     </span>
                     <span className="text-3xl font-serif font-bold text-amber-500">
-                      ${total}
+                      {convertPrice(total)}
                     </span>
                   </div>
                 </div>

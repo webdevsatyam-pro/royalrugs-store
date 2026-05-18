@@ -68,7 +68,7 @@ const NEW_PRODUCTS = [
 ];
 
 const NewArrivals = () => {
-  const { addToCart, addToWishlist, wishlist } = useCart();
+  const { addToCart, addToWishlist, wishlist, convertPrice } = useCart();
   const [filter, setFilter] = useState("All");
 
   const filteredItems =
@@ -194,10 +194,10 @@ const NewArrivals = () => {
                   </h3>
                   <div className="flex items-center justify-center gap-4">
                     <span className="text-xl font-medium text-stone-900">
-                      ${product.price}
+                      {convertPrice(product.price)}
                     </span>
                     <span className="text-sm text-stone-300 line-through font-bold">
-                      ${product.price + 150}
+                      {convertPrice(product.price + 150)}
                     </span>
                   </div>
                 </div>

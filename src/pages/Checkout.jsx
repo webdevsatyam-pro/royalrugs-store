@@ -13,7 +13,7 @@ import { useCart } from "../context/CartContext";
 
 const Checkout = () => {
   // 1. clearCart ko context se nikaal liya
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, convertPrice } = useCart();
   const navigate = useNavigate();
   const [isOrdered, setIsOrdered] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("card");
@@ -248,7 +248,7 @@ const Checkout = () => {
                       </p>
                     </div>
                     <p className="text-sm font-bold text-stone-900">
-                      ${item.price * item.quantity}
+                      {convertPrice(item.price * item.quantity)}
                     </p>
                   </div>
                 ))}
@@ -256,18 +256,18 @@ const Checkout = () => {
               <div className="space-y-4 border-t border-stone-100 pt-8">
                 <div className="flex justify-between text-sm text-stone-500 font-medium">
                   <span>Subtotal</span>
-                  <span className="text-stone-900">${subtotal}</span>
+                  <span className="text-stone-900">{convertPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm text-stone-500 font-medium">
                   <span>Shipping</span>
-                  <span className="text-stone-900">${shipping}</span>
+                  <span className="text-stone-900">{convertPrice(shipping)}</span>
                 </div>
                 <div className="flex justify-between items-end pt-4 border-t border-stone-50">
                   <span className="text-xs font-black uppercase tracking-[0.2em] text-stone-400">
                     Total
                   </span>
                   <span className="text-3xl font-serif font-bold text-amber-900">
-                    ${total}
+                      {convertPrice(total)}
                   </span>
                 </div>
               </div>

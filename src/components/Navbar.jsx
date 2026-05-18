@@ -5,7 +5,7 @@ import { Search, ShoppingCart, User, Menu, X, Heart } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 const Navbar = () => {
-  const { cart, wishlist } = useCart();
+  const { cart, wishlist, currency, setCurrency, currenciesList } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -105,6 +105,20 @@ const Navbar = () => {
 
           {/* Action Icons */}
           <div className="flex items-center space-x-6">
+            {/* Currency Selector */}
+            <div className="relative mr-1">
+              <select
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+                className="bg-[#FAF8F5]/80 hover:bg-stone-50 border border-stone-200/80 focus:border-amber-700/80 outline-none text-[10px] font-extrabold tracking-widest text-gray-800 uppercase py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300">
+                {Object.keys(currenciesList).map((code) => (
+                  <option key={code} value={code} className="text-stone-900 bg-white font-sans font-bold">
+                    {code} ({currenciesList[code].symbol})
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               className="text-gray-800 hover:text-amber-700 transition-transform hover:scale-110">
